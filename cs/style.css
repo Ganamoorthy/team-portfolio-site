@@ -1,0 +1,338 @@
+/* Member 2: main content, responsive layouts, and theme colours. */
+:root {
+    color-scheme: light;
+    --background: #f6f8fc;
+    --surface: #ffffff;
+    --text: #17243b;
+    --muted: #53627a;
+    --primary: #4338ca;
+    --primary-hover: #3730a3;
+    --accent: #ede9fe;
+    --border: #dce3ee;
+    --shadow: 0 12px 32px rgb(23 36 59 / 7%);
+    --hero-start: #eef2ff;
+    --hero-end: #f0fdfa;
+}
+
+/* Follow the system theme unless a theme has been explicitly selected. */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]):not(.light-mode) {
+        color-scheme: dark;
+        --background: #0f172a;
+        --surface: #182338;
+        --text: #f1f5f9;
+        --muted: #b6c3d6;
+        --primary: #a5b4fc;
+        --primary-hover: #c7d2fe;
+        --accent: #2b3454;
+        --border: #35435a;
+        --shadow: 0 12px 32px rgb(0 0 0 / 18%);
+        --hero-start: #1e2547;
+        --hero-end: #15333b;
+    }
+}
+
+/* Hooks for Member 3's theme toggle, on either html or body. */
+[data-theme="dark"],
+.dark-mode {
+    color-scheme: dark;
+    --background: #0f172a;
+    --surface: #182338;
+    --text: #f1f5f9;
+    --muted: #b6c3d6;
+    --primary: #a5b4fc;
+    --primary-hover: #c7d2fe;
+    --accent: #2b3454;
+    --border: #35435a;
+    --shadow: 0 12px 32px rgb(0 0 0 / 18%);
+    --hero-start: #1e2547;
+    --hero-end: #15333b;
+}
+
+[data-theme="light"],
+.light-mode {
+    color-scheme: light;
+    --background: #f6f8fc;
+    --surface: #ffffff;
+    --text: #17243b;
+    --muted: #53627a;
+    --primary: #4338ca;
+    --primary-hover: #3730a3;
+    --accent: #ede9fe;
+    --border: #dce3ee;
+    --shadow: 0 12px 32px rgb(23 36 59 / 7%);
+    --hero-start: #eef2ff;
+    --hero-end: #f0fdfa;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+}
+
+body {
+    margin: 0;
+    background: var(--background);
+    color: var(--text);
+    font-family: "Segoe UI", Arial, sans-serif;
+    line-height: 1.6;
+}
+
+main {
+    width: min(1120px, calc(100% - 3rem));
+    margin: 0 auto;
+    padding: 3rem 0 5rem;
+}
+
+main section {
+    margin-bottom: 4rem;
+    scroll-margin-top: 2rem;
+}
+
+main section:last-child {
+    margin-bottom: 0;
+}
+
+main h1,
+main h2,
+main h3,
+main p {
+    margin-top: 0;
+}
+
+main h1,
+main h2,
+main h3 {
+    line-height: 1.2;
+}
+
+main h2 {
+    margin-bottom: 1.75rem;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    text-align: center;
+    letter-spacing: -0.03em;
+}
+
+main h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.2rem;
+}
+
+main p {
+    color: var(--muted);
+}
+
+.hero {
+    padding: clamp(3rem, 7vw, 6rem) clamp(1.25rem, 5vw, 4rem);
+    border: 1px solid var(--border);
+    border-radius: 1.5rem;
+    background: linear-gradient(135deg, var(--hero-start), var(--hero-end));
+    text-align: center;
+}
+
+.hero h1 {
+    max-width: 850px;
+    margin: 0 auto 1.5rem;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    letter-spacing: -0.045em;
+}
+
+#typing-effect {
+    color: var(--primary);
+    overflow-wrap: anywhere;
+}
+
+/* Keep the heading readable until the typing script is added. */
+#typing-effect:empty::before {
+    content: "teamwork";
+}
+
+.hero p {
+    max-width: 620px;
+    margin: 0 auto 2rem;
+    font-size: 1.1rem;
+}
+
+.btn,
+.contact button {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.5rem;
+    border: 1px solid transparent;
+    border-radius: 0.65rem;
+    background: var(--primary);
+    color: var(--surface);
+    font: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.btn:hover,
+.contact button:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+main :focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 4px;
+}
+
+.cards,
+.team-cards {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.team-cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.card,
+.team-member {
+    min-width: 0;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    overflow-wrap: anywhere;
+}
+
+.card {
+    border-top: 4px solid var(--primary);
+}
+
+.card p,
+.team-member p {
+    margin-bottom: 0;
+}
+
+.team-member {
+    padding: 2rem 1.25rem;
+    text-align: center;
+}
+
+.avatar {
+    display: grid;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 1.25rem;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--primary);
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+.contact {
+    max-width: 720px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#contactForm {
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: var(--background);
+    color: var(--text);
+    font: inherit;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--muted);
+    opacity: 1;
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.contact button {
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+    .team-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    main {
+        width: calc(100% - 2rem);
+        padding: 1rem 0 3rem;
+    }
+
+    main section {
+        margin-bottom: 3rem;
+    }
+
+    .cards,
+    .team-cards {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .hero {
+        border-radius: 1rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .btn,
+    .contact button {
+        transition: none;
+    }
+
+    .btn:hover,
+    .contact button:hover {
+        transform: none;
+    }
+}
